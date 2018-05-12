@@ -79,6 +79,25 @@ app.get('/cards', (req, res) => {
   res.send('CREATURES STORED IN DB!');
 });
 
+app.get('/card', (req, res) => {
+  // Get the count of all cards in database
+  Card.count().exec(function(error, count) {
+    // Get a random card
+    let random = Math.floor(Math.random() * count);
+
+    // Query all cards but only fetch one offset by our random number
+    Card.findOne()
+      .skip(random)
+      .exec(function(error, result) {
+        if (error) {
+          console.log('Error finding a random card', error);
+        } else {
+          console.log('Found a new card!', result);
+        }
+      });
+  });
+});
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
