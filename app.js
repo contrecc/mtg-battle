@@ -93,6 +93,7 @@ app.get('/card', (req, res) => {
           console.log('Error finding a random card', error);
         } else {
           console.log('Found a new card!', result);
+          return res.json(result);
         }
       });
   });
