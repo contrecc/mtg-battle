@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const axios = require('axios');
 const fetch = require('node-fetch');
+const random = require('mongoose-simple-random');
 
 const app = express();
 
@@ -31,6 +32,8 @@ const cardSchema = new mongoose.Schema({
   power: String,
   toughness: String
 });
+
+cardSchema.plugin(random);
 
 const Card = mongoose.model('Card', cardSchema);
 
@@ -92,10 +95,21 @@ app.get('/card', (req, res) => {
         if (error) {
           console.log('Error finding a random card', error);
         } else {
-          console.log('Found a new card!', result);
+          //console.log('Found a new card!', result);
           return res.json(result);
         }
       });
+  });
+});
+
+app.get('/twocards', (req, res) => {
+  Card.findRandom({}, {}, {limit: 2}, function(error, cards) {
+    if(error) {
+      console.log('Error finding two cards', error);
+    } else {
+      //console.log('Found two cards!', cards);
+      return res.json(cards);
+    }
   });
 });
 

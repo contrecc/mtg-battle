@@ -7,7 +7,7 @@
     "start": "node app.js",
     "server": "nodemon app.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""   
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Colin Contreary",
   "license": "MIT",
@@ -17,6 +17,8 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "mongoose": "^5.1.0",
+    "mongoose-random": "^0.1.1",
+    "mongoose-simple-random": "^0.4.1",
     "node-fetch": "^2.1.2"
   },
   "devDependencies": {
