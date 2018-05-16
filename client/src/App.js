@@ -118,7 +118,8 @@ class App extends Component {
         winStreak: this.state.winStreak + 1,
         winningCard: '',
         winner: false,
-        pickedCard
+        pickedCard,
+        roundCompleted: true
       });
     } else if (neitherCardWins) {
       this.setState({
@@ -126,35 +127,40 @@ class App extends Component {
         winStreak: this.state.winStreak + 1,
         winningCard: '',
         winner: false,
-        pickedCard
+        pickedCard,
+        roundCompleted: true
       });
     } else if (onlyCard1Wins && pickedCard === 'card1') {
       this.setState({
         winner: true,
         winStreak: this.state.winStreak + 1,
         winningCard: 'card1',
-        pickedCard
+        pickedCard,
+        roundCompleted: true
       });
     } else if (onlyCard1Wins && pickedCard === 'card2') {
       this.setState({
         winner: false,
         winStreak: 0,
         winningCard: 'card1',
-        pickedCard
+        pickedCard,
+        roundCompleted: true
       });
     } else if (onlyCard2Wins && pickedCard === 'card2') {
       this.setState({
         winner: true,
         winStreak: this.state.winStreak + 1,
         winningCard: 'card2',
-        pickedCard
+        pickedCard,
+        roundCompleted: true
       });
     } else if (onlyCard2Wins && pickedCard === 'card1') {
       this.setState({
         winner: false,
         winStreak: 0,
         winningCard: 'card2',
-        pickedCard
+        pickedCard,
+        roundCompleted: true
       });
     }
   }
@@ -166,7 +172,9 @@ class App extends Component {
       bothWeak: false,
       winner: false,
       winningCard: '',
-      loading: false
+      loading: false,
+      roundCompleted: false,
+      pickedCard: ''
     });
   }
 
@@ -179,7 +187,8 @@ class App extends Component {
       bothWeak,
       winner,
       winningCard,
-      pickedCard
+      pickedCard,
+      roundCompleted
     } = this.state;
     return (
       <div className="App text-center">
@@ -200,9 +209,24 @@ class App extends Component {
                   {...{ winner, winningCard, pickedCard }}
                 />
               )}
-              <Button id="btnCard1" className="btn-lg" onClick={this.calculateWinner}>
+              {roundCompleted ? (
+                <Button
+                className="btn-lg"
+                id="btnCard1"
+                onClick={this.calculateWinner}
+                disabled
+              >
                 {card1.name}
               </Button>
+              ) : (
+                <Button
+                className="btn-lg"
+                id="btnCard1"
+                onClick={this.calculateWinner}
+              >
+                {card1.name}
+              </Button>
+              )}
             </Col>
             <Col>
               {loading ? (
@@ -218,9 +242,24 @@ class App extends Component {
                   {...{ winner, winningCard, pickedCard }}
                 />
               )}
-              <Button className="btn-lg" id="btnCard2" onClick={this.calculateWinner}>
+              {roundCompleted ? (
+                <Button
+                className="btn-lg"
+                id="btnCard2"
+                onClick={this.calculateWinner}
+                disabled
+              >
                 {card2.name}
               </Button>
+              ) : (
+                <Button
+                className="btn-lg"
+                id="btnCard2"
+                onClick={this.calculateWinner}
+              >
+                {card2.name}
+              </Button>
+              )}
             </Col>
           </Row>
           <Row style={{ marginTop: '60px' }}>
@@ -232,9 +271,10 @@ class App extends Component {
                   winner={winner}
                 />
               ) : null}
-              <h2 className="text-info">Win Streak: {this.state.winStreak}</h2>
-              <Button className="btn-lg" onClick={this.playAgain}>Play Again</Button>
-              <Button onClick={this.loadCards}>Load Cards</Button>
+              <h2 className="text-info" style={{marginBottom: '50px'}}>Win Streak: {this.state.winStreak}</h2>
+              <Button className="btn-lg" onClick={this.playAgain}>
+                Play Again
+              </Button>
               <InfoSection />
             </Col>
           </Row>
