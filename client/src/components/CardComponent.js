@@ -1,21 +1,22 @@
 import React from 'react';
 import { Card, CardImg } from 'reactstrap';
+import Image from 'react-graceful-image';
 
 export default props => {
   const { winningCard, card, id, pickedCard } = props;
   let bgClass;
 
   if (winningCard) {
-    if(winningCard === pickedCard && winningCard === id) {
+    if (winningCard === pickedCard && winningCard === id) {
       bgClass = 'bg-success';
     }
-    if(winningCard === pickedCard && winningCard !== id) {
+    if (winningCard === pickedCard && winningCard !== id) {
       bgClass = 'bg-danger';
     }
-    if(winningCard !== pickedCard && winningCard !== id) {
+    if (winningCard !== pickedCard && winningCard !== id) {
       bgClass = 'bg-danger';
     }
-    if(winningCard !== pickedCard && winningCard === id) {
+    if (winningCard !== pickedCard && winningCard === id) {
       bgClass = 'bg-success';
     }
   }
@@ -26,12 +27,19 @@ export default props => {
 
   return (
     <Card className={bgClass} style={{ padding: '20px', marginBottom: '30px' }}>
-      <CardImg
+      <Image
+        src={card.image_uris.current}
+        width="100%"
+        alt="card image"
+        retry={{ count: 10, delay: 2 }}
+        placeholderColor="#6c757d"
+      />
+      {/* <CardImg
         top
         width="100%"
         src={card.image_uris.current}
         alt="card image"
-      />
+      /> */}
     </Card>
   );
 };

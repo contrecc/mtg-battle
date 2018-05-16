@@ -2,7 +2,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <div style={{ marginTop: '40px', marginBottom: '80px' }}>
+    <div style={{ marginTop: '20px', marginBottom: '40px' }}>
       <h1
         style={{ fontSize: '50px', textAlign: 'center' }}
         className="text-info"

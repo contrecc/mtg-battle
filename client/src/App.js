@@ -192,73 +192,57 @@ class App extends Component {
     } = this.state;
     return (
       <div className="App text-center">
-        <Header />
+        <Header id="top" />
         <Container>
           <Row>
             <Col>
-              {loading ? (
-                <Card>
-                  <CardBody>
-                    <p>Loading...</p>
-                  </CardBody>
-                </Card>
-              ) : (
-                <CardComponent
-                  id="card1"
-                  card={card1}
-                  {...{ winner, winningCard, pickedCard }}
-                />
-              )}
+              <CardComponent
+                id="card1"
+                card={card1}
+                {...{ winner, winningCard, pickedCard }}
+              />
               {roundCompleted ? (
                 <Button
-                className="btn-lg"
-                id="btnCard1"
-                onClick={this.calculateWinner}
-                disabled
-              >
-                {card1.name}
-              </Button>
+                  className="btn-lg"
+                  id="btnCard1"
+                  onClick={this.calculateWinner}
+                  disabled
+                >
+                  {card1.name}
+                </Button>
               ) : (
                 <Button
-                className="btn-lg"
-                id="btnCard1"
-                onClick={this.calculateWinner}
-              >
-                {card1.name}
-              </Button>
+                  className="btn-lg"
+                  id="btnCard1"
+                  onClick={this.calculateWinner}
+                >
+                  {card1.name}
+                </Button>
               )}
             </Col>
             <Col>
-              {loading ? (
-                <Card>
-                  <CardBody>
-                    <p>Loading...</p>
-                  </CardBody>
-                </Card>
-              ) : (
-                <CardComponent
-                  id="card2"
-                  card={card2}
-                  {...{ winner, winningCard, pickedCard }}
-                />
-              )}
+              <CardComponent
+                id="card2"
+                card={card2}
+                {...{ winner, winningCard, pickedCard }}
+              />
               {roundCompleted ? (
                 <Button
-                className="btn-lg"
-                id="btnCard2"
-                onClick={this.calculateWinner}
-                disabled
-              >
-                {card2.name}
-              </Button>
+                  className="btn-lg"
+                  id="btnCard2"
+                  onClick={this.calculateWinner}
+                  disabled
+                >
+                  {card2.name}
+                </Button>
               ) : (
                 <Button
-                className="btn-lg"
-                id="btnCard2"
-                onClick={this.calculateWinner}
-              >
-                {card2.name}
-              </Button>
+                  className="btn-lg"
+                  id="btnCard2"
+                  onClick={this.calculateWinner}
+                >
+                  {card2.name}
+                </Button>
               )}
             </Col>
           </Row>
@@ -271,8 +255,10 @@ class App extends Component {
                   winner={winner}
                 />
               ) : null}
-              <h2 className="text-info" style={{marginBottom: '50px'}}>Win Streak: {this.state.winStreak}</h2>
-              <Button className="btn-lg" onClick={this.playAgain}>
+              <h2 className="text-info" style={{ marginBottom: '50px' }}>
+                Win Streak: {this.state.winStreak}
+              </h2>
+              <Button href="#top" className="btn-lg" onClick={this.playAgain}>
                 Play Again
               </Button>
               <InfoSection />
