@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Card, CardBody, Button } from 'reactstrap';
 import ResultsAlert from './components/ResultsAlert';
 import CardComponent from './components/CardComponent';
+import Header from './components/Header';
+import InfoSection from './components/InfoSection';
 import getCards from './utils/getCards';
 import './App.css';
-//import getCard from './utils/getCard';
 
 class App extends Component {
   constructor(props) {
@@ -41,14 +42,10 @@ class App extends Component {
       pickedCard: ''
     };
 
-    //this.getCard1 = this.getCard1.bind(this);
-    //this.getCard2 = this.getCard2.bind(this);
     this.showFullArt = this.showFullArt.bind(this);
     this.calculateWinner = this.calculateWinner.bind(this);
     this.playAgain = this.playAgain.bind(this);
     this.loadCards = this.loadCards.bind(this);
-    //this.getCards = this.getCards.bind(this);
-    //this.showFullArt2 = this.showFullArt2.bind(this);
   }
 
   loadCards() {
@@ -80,60 +77,10 @@ class App extends Component {
       .catch(error => console.log(error));
   }
 
-  // getCard1() {
-  //   fetch('/card')
-  //     .then(response => response.json())
-  //     .then(json =>
-  //       this.setState({
-  //         card1: {
-  //           image_uris: {
-  //             art_crop: json.image_uris.art_crop,
-  //             border_crop: json.image_uris.border_crop,
-  //             large: json.image_uris.large,
-  //             normal: json.image_uris.normal,
-  //             png: json.image_uris.png,
-  //             small: json.image_uris.small,
-  //             current: json.image_uris.art_crop
-  //           },
-  //           name: json.name,
-  //           power: Number(json.power),
-  //           toughness: Number(json.toughness)
-  //         }
-  //       })
-  //     )
-  //     .catch(error => console.log(error));
-  // }
-
-  // getCard2() {
-  //   fetch('/card')
-  //     .then(response => response.json())
-  //     .then(json =>
-  //       this.setState({
-  //         card2: {
-  //           image_uris: {
-  //             art_crop: json.image_uris.art_crop,
-  //             border_crop: json.image_uris.border_crop,
-  //             large: json.image_uris.large,
-  //             normal: json.image_uris.normal,
-  //             png: json.image_uris.png,
-  //             small: json.image_uris.small,
-  //             current: json.image_uris.art_crop
-  //           },
-  //           name: json.name,
-  //           power: Number(json.power),
-  //           toughness: Number(json.toughness)
-  //         }
-  //       })
-  //     )
-  //     .catch(error => console.log(error));
-  // }
-
   componentDidMount() {
     this.setState(function(prevState, props) {
       return { loading: true };
     });
-    //this.getCard1();
-    //this.getCard2();
     this.loadCards();
     this.setState(function(prevState, props) {
       return { loading: false };
@@ -142,21 +89,13 @@ class App extends Component {
 
   showFullArt() {
     const { card1, card2 } = this.state;
-    card2.image_uris.current = card2.image_uris.normal;
     card1.image_uris.current = card1.image_uris.normal;
+    card2.image_uris.current = card2.image_uris.normal;
     this.setState({
       card1,
       card2
     });
   }
-
-  // showFullArt1() {
-  //   const { card1 } = this.state;
-  //   card1.image_uris.current = card1.image_uris.normal;
-  //   this.setState({
-  //     card1
-  //   });
-  // }
 
   calculateWinner(e) {
     e.preventDefault();
@@ -231,28 +170,6 @@ class App extends Component {
     });
   }
 
-  // fetch('/card')
-  //   .then(response => response.json())
-  //   .then(json =>
-  //     this.setState({
-  //       card1: {
-  //         image_uris: {
-  //           art_crop: json.image_uris.art_crop,
-  //           border_crop: json.image_uris.border_crop,
-  //           large: json.image_uris.large,
-  //           normal: json.image_uris.normal,
-  //           png: json.image_uris.png,
-  //           small: json.image_uris.small
-  //         },
-  //         name: json.name,
-  //         power: json.power,
-  //         toughness: json.toughness
-  //       }
-  //     })
-  //   )
-  //   .catch(error => console.log(error));
-  //}
-
   render() {
     const {
       loading,
@@ -265,7 +182,8 @@ class App extends Component {
       pickedCard
     } = this.state;
     return (
-      <div className="App">
+      <div className="App text-center">
+        <Header />
         <Container>
           <Row>
             <Col>
@@ -282,7 +200,7 @@ class App extends Component {
                   {...{ winner, winningCard, pickedCard }}
                 />
               )}
-              <Button id="btnCard1" onClick={this.calculateWinner}>
+              <Button id="btnCard1" className="btn-lg" onClick={this.calculateWinner}>
                 {card1.name}
               </Button>
             </Col>
@@ -300,7 +218,7 @@ class App extends Component {
                   {...{ winner, winningCard, pickedCard }}
                 />
               )}
-              <Button id="btnCard2" onClick={this.calculateWinner}>
+              <Button className="btn-lg" id="btnCard2" onClick={this.calculateWinner}>
                 {card2.name}
               </Button>
             </Col>
@@ -314,9 +232,10 @@ class App extends Component {
                   winner={winner}
                 />
               ) : null}
-              <p>Win Streak: {this.state.winStreak}</p>
-              <Button onClick={this.playAgain}>Play Again</Button>
+              <h2 className="text-info">Win Streak: {this.state.winStreak}</h2>
+              <Button className="btn-lg" onClick={this.playAgain}>Play Again</Button>
               <Button onClick={this.loadCards}>Load Cards</Button>
+              <InfoSection />
             </Col>
           </Row>
         </Container>
