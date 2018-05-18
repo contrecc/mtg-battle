@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardImg } from 'reactstrap';
+import { Card } from 'reactstrap';
 import Image from 'react-graceful-image';
 
 export default props => {
@@ -35,12 +35,6 @@ export default props => {
         placeholderColor="#6c757d"
         
       />
-      {/* <CardImg
-        top
-        width="100%"
-        src={card.image_uris.current}
-        alt="card image"
-      /> */}
     </Card>
   );
 };

@@ -2,11 +2,19 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Button } from 'reactstrap';
 import ResultsAlert from './components/ResultsAlert';
 import CardComponent from './components/CardComponent';
-import CardButton1 from './components/CardButton1';
-import CardButton2 from './components/CardButton2';
+import CardButton from './components/CardButton';
 import Header from './components/Header';
 import InfoSection from './components/InfoSection';
+import WinStreak from './components/WinStreak';
 import getCards from './utils/getCards';
+import setBothCardsWin from './utils/setBothCardsWin';
+import setCard1WinsAndNotPicked from './utils/setCard1WinsAndNotPicked';
+import setCard1WinsAndPicked from './utils/setCard1WinsAndPicked';
+import setCard2WinsAndNotPicked from './utils/setCard2WinsAndNotPicked';
+import setCard2WinsAndPicked from './utils/setCard2WinsAndPicked';
+import setNeitherCardWins from './utils/setNeitherCardWins';
+import resetGameState from './utils/resetGameState';
+import setCardsData from './utils/setCardsData';
 import './App.css';
 
 class App extends Component {
@@ -33,7 +41,6 @@ class App extends Component {
         power: 0,
         toughness: 0
       },
-      loading: false,
       winner: false,
       bothStrong: false,
       bothWeak: false,
@@ -52,41 +59,12 @@ class App extends Component {
 
   loadCards() {
     getCards()
-      .then(json =>
-        this.setState({
-          card1: {
-            image_uris: {
-              art_crop: json[0].image_uris.art_crop,
-              normal: json[0].image_uris.normal,
-              current: json[0].image_uris.art_crop
-            },
-            name: json[0].name,
-            power: Number(json[0].power),
-            toughness: Number(json[0].toughness)
-          },
-          card2: {
-            image_uris: {
-              art_crop: json[1].image_uris.art_crop,
-              normal: json[1].image_uris.normal,
-              current: json[1].image_uris.art_crop
-            },
-            name: json[1].name,
-            power: Number(json[1].power),
-            toughness: Number(json[1].toughness)
-          }
-        })
-      )
+      .then(json => this.setState(setCardsData(json)))
       .catch(error => console.log(error));
   }
 
   componentDidMount() {
-    this.setState(function(prevState, props) {
-      return { loading: true };
-    });
     this.loadCards();
-    this.setState(function(prevState, props) {
-      return { loading: false };
-    });
   }
 
   showFullArt() {
@@ -115,74 +93,27 @@ class App extends Component {
     const pickedCard = e.target.id === 'btnCard1' ? 'card1' : 'card2';
 
     if (bothCardsWin) {
-      this.setState({
-        bothStrong: true,
-        winStreak: this.state.winStreak + 1,
-        winningCard: '',
-        winner: false,
-        pickedCard,
-        roundCompleted: true
-      });
+      this.setState(setBothCardsWin(pickedCard));
     } else if (neitherCardWins) {
-      this.setState({
-        bothWeak: true,
-        winStreak: this.state.winStreak + 1,
-        winningCard: '',
-        winner: false,
-        pickedCard,
-        roundCompleted: true
-      });
+      this.setState(setNeitherCardWins(pickedCard));
     } else if (onlyCard1Wins && pickedCard === 'card1') {
-      this.setState({
-        winner: true,
-        winStreak: this.state.winStreak + 1,
-        winningCard: 'card1',
-        pickedCard,
-        roundCompleted: true
-      });
+      this.setState(setCard1WinsAndPicked(pickedCard));
     } else if (onlyCard1Wins && pickedCard === 'card2') {
-      this.setState({
-        winner: false,
-        winStreak: 0,
-        winningCard: 'card1',
-        pickedCard,
-        roundCompleted: true
-      });
+      this.setState(setCard1WinsAndNotPicked(pickedCard));
     } else if (onlyCard2Wins && pickedCard === 'card2') {
-      this.setState({
-        winner: true,
-        winStreak: this.state.winStreak + 1,
-        winningCard: 'card2',
-        pickedCard,
-        roundCompleted: true
-      });
+      this.setState(setCard2WinsAndPicked(pickedCard));
     } else if (onlyCard2Wins && pickedCard === 'card1') {
-      this.setState({
-        winner: false,
-        winStreak: 0,
-        winningCard: 'card2',
-        pickedCard,
-        roundCompleted: true
-      });
+      this.setState(setCard2WinsAndNotPicked(pickedCard));
     }
   }
 
   playAgain() {
     this.loadCards();
-    this.setState({
-      bothStrong: false,
-      bothWeak: false,
-      winner: false,
-      winningCard: '',
-      loading: false,
-      roundCompleted: false,
-      pickedCard: ''
-    });
+    this.setState(resetGameState);
   }
 
   render() {
     const {
-      loading,
       card1,
       card2,
       bothStrong,
@@ -190,7 +121,8 @@ class App extends Component {
       winner,
       winningCard,
       pickedCard,
-      roundCompleted
+      roundCompleted,
+      winStreak
     } = this.state;
     return (
       <div className="App text-center">
@@ -203,25 +135,12 @@ class App extends Component {
                 card={card1}
                 {...{ winner, winningCard, pickedCard }}
               />
-              {/* {roundCompleted ? (
-                <Button
-                  className="btn-lg"
-                  id="btnCard1"
-                  onClick={this.calculateWinner}
-                  disabled
-                >
-                  {card1.name}
-                </Button>
-              ) : (
-                <Button
-                  className="btn-lg"
-                  id="btnCard1"
-                  onClick={this.calculateWinner}
-                >
-                  {card1.name}
-                </Button>
-              )} */}
-              <CardButton1 roundCompleted={roundCompleted} card={card1} calculate={this.calculateWinner} />
+              <CardButton
+                id="btnCard1"
+                roundCompleted={roundCompleted}
+                card={card1}
+                calculate={this.calculateWinner}
+              />
             </Col>
             <Col>
               <CardComponent
@@ -229,39 +148,20 @@ class App extends Component {
                 card={card2}
                 {...{ winner, winningCard, pickedCard }}
               />
-              {/* {roundCompleted ? (
-                <Button
-                  className="btn-lg"
-                  id="btnCard2"
-                  onClick={this.calculateWinner}
-                  disabled
-                >
-                  {card2.name}
-                </Button>
-              ) : (
-                <Button
-                  className="btn-lg"
-                  id="btnCard2"
-                  onClick={this.calculateWinner}
-                >
-                  {card2.name}
-                </Button>
-              )} */}
-              <CardButton2 roundCompleted={roundCompleted} card={card2} calculate={this.calculateWinner} />
+              <CardButton
+                id="btnCard2"
+                roundCompleted={roundCompleted}
+                card={card2}
+                calculate={this.calculateWinner}
+              />
             </Col>
           </Row>
-          <Row style={{ marginTop: '60px' }}>
+          <Row style={{ marginTop: '40px' }}>
             <Col>
-              {winner || bothStrong || bothWeak || winningCard ? (
-                <ResultsAlert
-                  bothStrong={bothStrong}
-                  bothWeak={bothWeak}
-                  winner={winner}
-                />
+              {roundCompleted ? (
+                <ResultsAlert {...{ bothStrong, bothWeak, winner }} />
               ) : null}
-              <h2 className="text-info" style={{ marginBottom: '50px' }}>
-                Win Streak: {this.state.winStreak}
-              </h2>
+              <WinStreak winStreak={winStreak} />
               <Button href="#top" className="btn-lg" onClick={this.playAgain}>
                 Play Again
               </Button>
