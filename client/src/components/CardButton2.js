@@ -1,16 +1,11 @@
 import React from 'react';
-import classnames from 'classnames';
 import { Button } from 'reactstrap';
 
 export default props => {
-  const { roundCompleted, card } = props;
-  const classes = classnames({
-    'btn-lg': true,
-    disabled: roundCompleted
-  });
+  const { roundCompleted, card, calculate } = props;
 
   return (
-    <Button id="btnCard2" className={classes}>
+    <Button id="btnCard2" className="btn-lg" disabled={roundCompleted} onClick={calculate}>
       {card.name}
     </Button>
   );

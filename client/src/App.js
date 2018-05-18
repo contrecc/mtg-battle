@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Card, CardBody, Button } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 import ResultsAlert from './components/ResultsAlert';
 import CardComponent from './components/CardComponent';
+import CardButton1 from './components/CardButton1';
+import CardButton2 from './components/CardButton2';
 import Header from './components/Header';
 import InfoSection from './components/InfoSection';
 import getCards from './utils/getCards';
@@ -201,7 +203,7 @@ class App extends Component {
                 card={card1}
                 {...{ winner, winningCard, pickedCard }}
               />
-              {roundCompleted ? (
+              {/* {roundCompleted ? (
                 <Button
                   className="btn-lg"
                   id="btnCard1"
@@ -218,7 +220,8 @@ class App extends Component {
                 >
                   {card1.name}
                 </Button>
-              )}
+              )} */}
+              <CardButton1 roundCompleted={roundCompleted} card={card1} calculate={this.calculateWinner} />
             </Col>
             <Col>
               <CardComponent
@@ -226,7 +229,7 @@ class App extends Component {
                 card={card2}
                 {...{ winner, winningCard, pickedCard }}
               />
-              {roundCompleted ? (
+              {/* {roundCompleted ? (
                 <Button
                   className="btn-lg"
                   id="btnCard2"
@@ -243,7 +246,8 @@ class App extends Component {
                 >
                   {card2.name}
                 </Button>
-              )}
+              )} */}
+              <CardButton2 roundCompleted={roundCompleted} card={card2} calculate={this.calculateWinner} />
             </Col>
           </Row>
           <Row style={{ marginTop: '60px' }}>
