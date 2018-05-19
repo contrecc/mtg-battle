@@ -10,7 +10,7 @@ export default () => {
         MTG BATTLE
       </h1>
       <p className="lead text-center">
-        Guess which creature would defeat the other in combat!
+        Guess which <strong>Magic: The Gathering</strong> creature would defeat the other in combat!
       </p>
     </div>
   );
