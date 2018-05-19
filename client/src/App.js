@@ -126,7 +126,7 @@ class App extends Component {
     } = this.state;
     return (
       <div className="App text-center">
-        <Header id="top" />
+        <Header />
         <Container>
           <Row>
             <Col>
@@ -162,7 +162,7 @@ class App extends Component {
                 <ResultsAlert {...{ bothStrong, bothWeak, winner }} />
               ) : null}
               <WinStreak winStreak={winStreak} />
-              <Button href="#top" className="btn-lg" onClick={this.playAgain}>
+              <Button className="btn-lg" onClick={this.playAgain}>
                 Play Again
               </Button>
               <InfoSection />
