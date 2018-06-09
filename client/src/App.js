@@ -47,8 +47,7 @@ class App extends Component {
       winStreak: 0,
       btnClicked: null,
       roundCompleted: false,
-      winningCard: '',
-      pickedCard: ''
+      winningCard: ''
     };
 
     this.showFullArt = this.showFullArt.bind(this);
@@ -93,17 +92,17 @@ class App extends Component {
     const pickedCard = e.target.id === 'btnCard1' ? 'card1' : 'card2';
 
     if (bothCardsWin) {
-      this.setState(setBothCardsWin(pickedCard));
+      this.setState(setBothCardsWin());
     } else if (neitherCardWins) {
-      this.setState(setNeitherCardWins(pickedCard));
+      this.setState(setNeitherCardWins());
     } else if (onlyCard1Wins && pickedCard === 'card1') {
-      this.setState(setCard1WinsAndPicked(pickedCard));
+      this.setState(setCard1WinsAndPicked());
     } else if (onlyCard1Wins && pickedCard === 'card2') {
-      this.setState(setCard1WinsAndNotPicked(pickedCard));
+      this.setState(setCard1WinsAndNotPicked());
     } else if (onlyCard2Wins && pickedCard === 'card2') {
-      this.setState(setCard2WinsAndPicked(pickedCard));
+      this.setState(setCard2WinsAndPicked());
     } else if (onlyCard2Wins && pickedCard === 'card1') {
-      this.setState(setCard2WinsAndNotPicked(pickedCard));
+      this.setState(setCard2WinsAndNotPicked());
     }
   }
 
@@ -120,7 +119,6 @@ class App extends Component {
       bothWeak,
       winner,
       winningCard,
-      pickedCard,
       roundCompleted,
       winStreak
     } = this.state;
@@ -133,7 +131,7 @@ class App extends Component {
               <CardComponent
                 id="card1"
                 card={card1}
-                {...{ winner, winningCard, pickedCard }}
+                {...{ winner, winningCard }}
               />
               <CardButton
                 id="btnCard1"
@@ -146,7 +144,7 @@ class App extends Component {
               <CardComponent
                 id="card2"
                 card={card2}
-                {...{ winner, winningCard, pickedCard }}
+                {...{ winner, winningCard }}
               />
               <CardButton
                 id="btnCard2"

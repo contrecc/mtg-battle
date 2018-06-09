@@ -4,7 +4,6 @@ export default function resetGameState(state, props) {
     bothWeak: false,
     winner: false,
     winningCard: '',
-    roundCompleted: false,
-    pickedCard: ''
+    roundCompleted: false
   };
 }

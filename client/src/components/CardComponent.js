@@ -3,25 +3,16 @@ import { Card } from 'reactstrap';
 import Image from 'react-graceful-image';
 
 export default props => {
-  const { winningCard, card, id, pickedCard } = props;
+  const { winningCard, card, id } = props;
   let bgClass;
 
   if (winningCard) {
-    if (winningCard === pickedCard && winningCard === id) {
+    if (winningCard === id) {
       bgClass = 'bg-success';
-    }
-    if (winningCard === pickedCard && winningCard !== id) {
+    } else {
       bgClass = 'bg-danger';
     }
-    if (winningCard !== pickedCard && winningCard !== id) {
-      bgClass = 'bg-danger';
-    }
-    if (winningCard !== pickedCard && winningCard === id) {
-      bgClass = 'bg-success';
-    }
-  }
-
-  if (!winningCard) {
+  } else {
     bgClass = 'bg-secondary';
   }
 
