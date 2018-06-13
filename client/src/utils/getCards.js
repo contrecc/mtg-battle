@@ -1,7 +1,11 @@
-import fetch from 'node-fetch';
+import server from '../config/server';
 
-export default function getCards() {
-  return fetch('/cards')
-      .then(response => response.json())
-      .catch(error => console.log(error));
-}
+export default async () => {
+  const response = await fetch(`${server}/cards`);
+
+  if (response.status >= 400) {
+    throw new Error('Error fetching cards');
+  } else {
+    return await response.json();
+  }
+};

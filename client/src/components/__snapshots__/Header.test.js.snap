@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders correctly 1`] = `
+<div
+  style={
+    Object {
+      "marginBottom": "40px",
+      "marginTop": "20px",
+    }
+  }
+>
+  <h1
+    className="text-info"
+    style={
+      Object {
+        "fontSize": "50px",
+        "textAlign": "center",
+      }
+    }
+  >
+    MTG BATTLE
+  </h1>
+  <p
+    className="lead text-center"
+  >
+    Guess which 
+    <strong>
+      Magic: The Gathering
+    </strong>
+     creature would defeat the other in combat!
+  </p>
+</div>
+`;

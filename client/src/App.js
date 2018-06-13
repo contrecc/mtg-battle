@@ -56,14 +56,17 @@ class App extends Component {
     this.loadCards = this.loadCards.bind(this);
   }
 
-  loadCards() {
-    getCards()
-      .then(json => this.setState(setCardsData(json)))
-      .catch(error => console.log(error));
+  async loadCards() {
+    try {
+      const cards = await getCards();
+      this.setState(setCardsData(cards));
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  componentDidMount() {
-    this.loadCards();
+  async componentDidMount() {
+    await this.loadCards();
   }
 
   showFullArt() {
@@ -106,8 +109,8 @@ class App extends Component {
     }
   }
 
-  playAgain() {
-    this.loadCards();
+  async playAgain() {
+    await this.loadCards();
     this.setState(resetGameState);
   }
 

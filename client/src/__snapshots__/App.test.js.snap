@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders properly 1`] = `
+<div
+  className="App text-center"
+>
+  <div
+    style={
+      Object {
+        "marginBottom": "40px",
+        "marginTop": "20px",
+      }
+    }
+  >
+    <h1
+      className="text-info"
+      style={
+        Object {
+          "fontSize": "50px",
+          "textAlign": "center",
+        }
+      }
+    >
+      MTG BATTLE
+    </h1>
+    <p
+      className="lead text-center"
+    >
+      Guess which 
+      <strong>
+        Magic: The Gathering
+      </strong>
+       creature would defeat the other in combat!
+    </p>
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col"
+      >
+        <div
+          className="bg-secondary card"
+          style={
+            Object {
+              "marginBottom": "30px",
+              "marginLeft": "auto",
+              "marginRight": "auto",
+              "marginTop": "0px",
+              "maxWidth": "350px",
+              "padding": "20px",
+            }
+          }
+        >
+          <img
+            alt="card image"
+            className={null}
+            height={null}
+            src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' width%3D'100%' height%3D'150' viewBox%3D'0 0 100% 150'%2F%3E"
+            style={
+              Object {
+                "background": "#6c757d",
+              }
+            }
+            width="100%"
+          />
+        </div>
+        <button
+          className="btn-lg btn btn-secondary"
+          disabled={false}
+          id="btnCard1"
+          onClick={[Function]}
+          type="button"
+        />
+      </div>
+      <div
+        className="col"
+      >
+        <div
+          className="bg-secondary card"
+          style={
+            Object {
+              "marginBottom": "30px",
+              "marginLeft": "auto",
+              "marginRight": "auto",
+              "marginTop": "0px",
+              "maxWidth": "350px",
+              "padding": "20px",
+            }
+          }
+        >
+          <img
+            alt="card image"
+            className={null}
+            height={null}
+            src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' width%3D'100%' height%3D'150' viewBox%3D'0 0 100% 150'%2F%3E"
+            style={
+              Object {
+                "background": "#6c757d",
+              }
+            }
+            width="100%"
+          />
+        </div>
+        <button
+          className="btn-lg btn btn-secondary"
+          disabled={false}
+          id="btnCard2"
+          onClick={[Function]}
+          type="button"
+        />
+      </div>
+    </div>
+    <div
+      className="row"
+      style={
+        Object {
+          "marginTop": "40px",
+        }
+      }
+    >
+      <div
+        className="col"
+      >
+        <div>
+          <h2
+            className="text-info"
+            style={
+              Object {
+                "marginBottom": "40px",
+              }
+            }
+          >
+            Win Streak: 
+            0
+          </h2>
+        </div>
+        <button
+          className="btn-lg btn btn-secondary"
+          onClick={[Function]}
+          type="button"
+        >
+          Play Again
+        </button>
+        <div
+          style={
+            Object {
+              "marginTop": "50px",
+            }
+          }
+        >
+          <hr />
+          <h3>
+            Site built by 
+            <a
+              className="text-info"
+              href="https://github.com/contrecc"
+            >
+              Colin Contreary
+            </a>
+          </h3>
+          <p>
+            It uses React, Reactstrap, and Express
+          </p>
+          <p>
+            All card data from 
+            <a
+              className="text-info"
+              href="https://scryfall.com"
+            >
+              Scryfall
+            </a>
+          </p>
+          <p>
+            MTG Battle is unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

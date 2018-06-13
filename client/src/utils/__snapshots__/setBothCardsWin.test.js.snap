@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`setBothCardsWin should return a function 1`] = `[Function]`;
+
+exports[`setBothCardsWin should return a function that then updates the state 1`] = `
+Object {
+  "bothStrong": true,
+  "roundCompleted": true,
+  "winStreak": NaN,
+  "winner": false,
+  "winningCard": "",
+}
+`;

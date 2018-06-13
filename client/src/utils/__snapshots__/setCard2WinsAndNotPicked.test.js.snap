@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`setCard2WinsAndNotPicked should return a function 1`] = `[Function]`;
+
+exports[`setCard2WinsAndNotPicked should return a function that then updates the state 1`] = `
+Object {
+  "roundCompleted": true,
+  "winStreak": 0,
+  "winner": false,
+  "winningCard": "card2",
+}
+`;
