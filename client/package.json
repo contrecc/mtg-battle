@@ -7,7 +7,7 @@
     "classnames": "^2.2.6",
     "eslint": "^6.3.0",
     "jquery": "^3.5.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-graceful-image": "^1.2.11",
